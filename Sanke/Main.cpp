@@ -15,6 +15,7 @@ Dire ChangeDire(const char ch,Dire _dire)
 	case 's':dire = Down; break;
 	case 'd':dire = Right; break;
 	case 'w':dire = Up; break;
+	case 'p':return None;
 	default:dire = _dire; break;
 	}
 	if (dire != (_dire + 2) % 4)
@@ -31,8 +32,11 @@ Dire Pause(const Dire dire)
 		if (_kbhit()) {
 			ch = _getch();
 			temp = ChangeDire(ch, dire);
-			if (temp != dire)
+			if (temp != dire) {
 				result = temp;
+				if (temp == None)
+					break;
+			}
 			//Change Dire
 		}
 	}
@@ -41,8 +45,8 @@ Dire Pause(const Dire dire)
 
 int main()
 {
-	Dire dire = Up;
-	const Point MapSize = { 10,10 };
+	Dire dire = None;
+	const Point MapSize = { 5,5 };
 	Sanke sanke(MapSize);
 	sanke.CreateFood();
 	while (true) {

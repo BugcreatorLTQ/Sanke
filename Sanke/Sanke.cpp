@@ -35,6 +35,7 @@ void Sanke::Move(Dire dire)
 	case Down:head.X++; break;
 	case Left:head.Y--; break;
 	case Right:head.Y++; break;
+	case None:return;
 	default:break;
 	}
 	if (IsSafe(head)) {
@@ -77,6 +78,7 @@ void Sanke::ShowMap() const
 		}
 		cout << endl;
 	}
+	cout << "W A S D Move" << endl << "P Pause" << endl;
 	cout << "score: " << length-1 << endl;
 }
 
@@ -96,18 +98,4 @@ void Sanke::CreateFood()
 			index--;
 		}
 	}
-}
-
-void Sanke::ShowMapNum()
-{
-	unsigned int i;
-	for (i = 0; i < map_size.X * map_size.Y; i++)
-		cout << (int)map[i] << " ";
-}
-
-void Sanke::Example()
-{
-	Point point = { 3,6 };
-	SetStyle(point, Body);
-	ShowMap();
 }

@@ -2,7 +2,7 @@
 #define SANKE_H
 
 namespace snake_enum {
-	enum Dire { Up, Left, Down, Right }; //move Direction
+	enum Dire { None, Up, Left, Down, Right }; //move Direction
 	enum MapStyle { Food, Body, Way };
 }
 using namespace snake_enum;
@@ -30,8 +30,6 @@ public:
 	void Move(Dire dire);
 	void ShowMap() const;
 	void CreateFood();
-	void ShowMapNum();
-	void Example();
 };
 
 MapStyle & Sanke::GetData(const Point &point) 
