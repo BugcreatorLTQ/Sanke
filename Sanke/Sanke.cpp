@@ -4,7 +4,7 @@ using namespace std;
 #include<random>
 #include<time.h>
 #include "Sanke.h"
-
+extern unsigned int PAUSE_TIME;
 
 Sanke::Sanke(const Point &size)
 {
@@ -47,7 +47,10 @@ void Sanke::Move(Dire dire)
 			body.pop();
 			length--;
 		}
-		else  CreateFood();
+		else {
+			CreateFood();
+			PAUSE_TIME *= 0.90;
+		}
 		SetStyle(head, Body);
 	}
 	else

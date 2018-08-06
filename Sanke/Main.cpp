@@ -2,10 +2,12 @@
 #include<Windows.h>
 #include<queue>
 #include<conio.h>
+#include<ctime>
 #include"Sanke.h"
 using namespace std;
 using namespace snake_enum;
 
+unsigned int PAUSE_TIME = CLOCKS_PER_SEC;
 
 Dire ChangeDire(const char ch,Dire _dire)
 {
@@ -27,8 +29,9 @@ Dire Pause(const Dire dire)
 {
 	char ch;
 	Dire temp = dire, result = dire;
-	unsigned int i, sum = 10000;
-	for (i = 0; i < sum; i++) {
+	unsigned int TIME = PAUSE_TIME;
+	time_t start = clock();
+	while(clock()-start<TIME) {
 		if (_kbhit()) {
 			ch = _getch();
 			temp = ChangeDire(ch, dire);
@@ -46,7 +49,7 @@ Dire Pause(const Dire dire)
 int main()
 {
 	Dire dire = None;
-	const Point MapSize = { 5,5 };
+	const Point MapSize = { 10,10 };
 	Sanke sanke(MapSize);
 	sanke.CreateFood();
 	while (true) {
